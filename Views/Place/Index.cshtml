@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<MovieStoreMvc.Models.Domain.Place>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place List</title>
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+</head>
+<body>
+    <div class="container">
+        <h2>All Places</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Place Name</th>
+                    <th>Genre</th>
+                    <th>Establish Year</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var place in Model)
+                {
+                    <tr>
+                        <td>@place.Title</td>
+                         <!-- Adjust based on actual model structure -->
+                        <td>@place.ReleaseYear</td>
+                        <td>@place.Cast</td>
+                        <td>@place.Description</td> <!-- Adjust if needed -->
+                       
+                        <td>
+                            <a href="@Url.Action("Edit", "Place", new { id = place.Id })">Edit</a> |
+                            <a href="@Url.Action("Delete", "Place", new { id = place.Id })" onclick="return confirm('Are you sure?');">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("Add", "Place")" class="btn btn-default">Add New Place</a>
+    </div>
+</body>
+</html>
